@@ -1,4 +1,5 @@
-﻿using NSubstitute;
+﻿using System.Collections.Generic;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace YahtzeeKata.Tests
@@ -9,7 +10,8 @@ namespace YahtzeeKata.Tests
         [Test]
         public void PlayThreeRounds()
         {
-            var scoreCard = new ScoreCard();
+            var categories = new List<Category> {new Category()};
+            var scoreCard = new ScoreCard(categories);
             var console = Substitute.For<IConsole>();
             var game = new YahtzeeGame(scoreCard);
 
