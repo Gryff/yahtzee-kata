@@ -4,18 +4,21 @@ namespace YahtzeeKata
 {
     public class ScoreCard
     {
-        private List<Category> categories;
+        private readonly List<Category> _categories;
 
         public ScoreCard() { }
 
         public ScoreCard(List<Category> categories)
         {
-            this.categories = categories;
+            this._categories = categories;
         }
 
         public virtual void PlayNextCategory()
         {
-            throw new System.NotImplementedException();
+            foreach (var category in _categories)
+            {
+                category.Play();
+            }
         }
     }
 }

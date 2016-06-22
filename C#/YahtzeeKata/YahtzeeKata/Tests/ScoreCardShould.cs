@@ -15,6 +15,8 @@ namespace YahtzeeKata.Tests
             var scoreCard = new ScoreCard(new List<Category> {category});
 
             scoreCard.PlayNextCategory();
+
+            category.Received().Play();
         }
     }
 }
