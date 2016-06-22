@@ -4,16 +4,16 @@ namespace YahtzeeKata
 {
     public class YahtzeeGame
     {
-        private Categories _categories;
+        private ScoreCard _scoreCard;
 
-        public YahtzeeGame(Categories categories)
+        public YahtzeeGame(ScoreCard scoreCard)
         {
-            this._categories = categories;
+            this._scoreCard = scoreCard;
         }
 
         public void Run()
         {
-            _categories.PlayNextCategory();
+            _scoreCard.PlayNextCategory();
         }
     }
 }

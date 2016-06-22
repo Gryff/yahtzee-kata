@@ -9,12 +9,12 @@ namespace YahtzeeKata.Tests
         [Test]
         public void RunTheGame()
         {
-            var categories = Substitute.For<Categories>();
-            var game = new YahtzeeGame(categories);
+            var scoreCard = Substitute.For<ScoreCard>();
+            var game = new YahtzeeGame(scoreCard);
 
             game.Run();
 
-            categories.Received().PlayNextCategory();
+            scoreCard.Received().PlayNextCategory();
         }
     }
 }

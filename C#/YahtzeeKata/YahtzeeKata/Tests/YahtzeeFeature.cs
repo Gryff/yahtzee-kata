@@ -9,9 +9,9 @@ namespace YahtzeeKata.Tests
         [Test]
         public void PlayThreeRounds()
         {
-            var categories = new Categories();
+            var scoreCard = new ScoreCard();
             var console = Substitute.For<IConsole>();
-            var game = new YahtzeeGame(categories);
+            var game = new YahtzeeGame(scoreCard);
 
             game.Run();
 

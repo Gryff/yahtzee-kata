@@ -1,6 +1,6 @@
 ﻿namespace YahtzeeKata
 {
-    public class Categories
+    public class ScoreCard
     {
         public virtual void PlayNextCategory()
         {
