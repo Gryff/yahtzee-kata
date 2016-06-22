@@ -10,9 +10,13 @@ namespace YahtzeeKata.Tests
         [Test]
         public void PlayThreeRounds()
         {
-            var categories = new List<Category> {new Category()};
-            var scoreCard = new ScoreCard(categories);
             var console = Substitute.For<IConsole>();
+            var categories = new List<Category>
+            {
+                new Category("Ones", console)
+            };
+
+            var scoreCard = new ScoreCard(categories);
             var game = new YahtzeeGame(scoreCard);
 
             game.Run();

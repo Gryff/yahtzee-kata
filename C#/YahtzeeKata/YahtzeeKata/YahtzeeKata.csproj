@@ -53,6 +53,7 @@
     <Compile Include="Src\IConsole.cs" />
     <Compile Include="Src\ScoreCard.cs" />
     <Compile Include="Src\YahtzeeGame.cs" />
+    <Compile Include="Tests\CategoryShould.cs" />
     <Compile Include="Tests\ScoreCardShould.cs" />
     <Compile Include="Tests\YahtzeeFeature.cs" />
     <Compile Include="Tests\YahtzeeGameShould.cs" />
