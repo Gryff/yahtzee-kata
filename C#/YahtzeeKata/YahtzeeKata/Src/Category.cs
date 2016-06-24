@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace YahtzeeKata
 {
@@ -30,6 +31,19 @@ namespace YahtzeeKata
             {
                 dice.Roll();
             }
+
+            PrintDie();
+        }
+
+        private void PrintDie()
+        {
+            var diceCount = 0;
+
+            var dieValues = string.Join(
+                " ",
+                _die.Select(d => $"D{++diceCount}:{d.Value()}"));
+
+            _console.PrintLine($"Dice: {dieValues}");
         }
     }
 }

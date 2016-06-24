@@ -10,13 +10,16 @@ namespace YahtzeeKata.Tests
         private IConsole _console;
         private Category _category;
         private string _title;
+        private List<Dice> _die;
 
         [SetUp]
         public void SetUp()
         {
             _console = Substitute.For<IConsole>();
             _title = "Ones";
-            _category = new Category(_title, _console, new List<Dice>());
+            _die = new List<Dice> { Substitute.For<Dice>() };
+
+            _category = new Category(_title, _console, _die);
         }
 
         [Test]
@@ -30,13 +33,19 @@ namespace YahtzeeKata.Tests
         [Test]
         public void RollItsDie()
         {
-            var dice = Substitute.For<Dice>();
-            var die = new List<Dice> { dice };
-            _category = new Category(_title, _console, die);
-
             _category.Play();
             
-            dice.Received().Roll();
+            _die[0].Received().Roll();
+        }
+
+        [Test]
+        public void PrintItsDie()
+        {
+            _die[0].Value().Returns(5);
+
+            _category.Play();
+
+            _console.Received().PrintLine("Dice: D1:5");
         }
     }
 }

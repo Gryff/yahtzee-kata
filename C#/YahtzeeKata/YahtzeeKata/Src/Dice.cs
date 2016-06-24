@@ -1,10 +1,17 @@
-﻿namespace YahtzeeKata
+﻿using System;
+
+namespace YahtzeeKata
 {
     public class Dice
     {
-        public virtual int Roll()
+        public virtual void Roll()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        public virtual int Value()
+        {
+            throw new NotImplementedException();
         }
     }
 }
