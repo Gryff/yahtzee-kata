@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Src\Category.cs" />
+    <Compile Include="Src\Dice.cs" />
     <Compile Include="Src\IConsole.cs" />
     <Compile Include="Src\ScoreCard.cs" />
     <Compile Include="Src\YahtzeeGame.cs" />
