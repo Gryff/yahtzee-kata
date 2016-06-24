@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -17,7 +18,7 @@ namespace YahtzeeKata.Tests
         {
             _console = Substitute.For<IConsole>();
             _title = "Ones";
-            _die = new List<Dice> { Substitute.For<Dice>() };
+            _die = Enumerable.Repeat(Substitute.For<Dice>(), 5).ToList();
 
             _category = new Category(_title, _console, _die);
         }
@@ -35,7 +36,7 @@ namespace YahtzeeKata.Tests
         {
             _category.Play();
             
-            _die[0].Received().Roll();
+            _die.ForEach(d => d.Received().Roll());
         }
 
         [Test]
@@ -45,7 +46,7 @@ namespace YahtzeeKata.Tests
 
             _category.Play();
 
-            _console.Received().PrintLine("Dice: D1:5");
+            _console.Received().PrintLine("Dice: D1:5 D2:5 D3:5 D4:5 D5:5");
         }
     }
 }
