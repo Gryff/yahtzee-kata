@@ -27,11 +27,8 @@ namespace YahtzeeKata
 
         private void PlayTurn()
         {
-            foreach (var dice in _die)
-            {
-                dice.Roll();
-            }
-
+            _die.ToList().ForEach(d => d.Roll());
+            
             PrintDie();
         }
 
