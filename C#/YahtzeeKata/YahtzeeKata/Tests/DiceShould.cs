@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace YahtzeeKata.Tests
 {
@@ -8,7 +9,8 @@ namespace YahtzeeKata.Tests
         [Test]
         public void RollARandomNumber()
         {
-            var dice = new Dice();
+            var dice = new Dice(
+                new Random(DateTime.Now.Millisecond));
 
             for (var i = 0; i < 10; i++)
             {
