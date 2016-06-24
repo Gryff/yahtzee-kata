@@ -12,11 +12,13 @@ namespace YahtzeeKata.Tests
         public void PlayThreeRounds()
         {
             var console = Substitute.For<IConsole>();
-            var die = Enumerable.Repeat(new Dice(), 5);
+            var die = Enumerable.Repeat(new Dice(), 5).ToList();
 
             var categories = new List<Category>
             {
-                new Category("Ones", console, die)
+                new Category("Ones", console, die),
+                new Category("Twos", console, die),
+                new Category("Threes", console, die)
             };
 
             var scoreCard = new ScoreCard(categories);
