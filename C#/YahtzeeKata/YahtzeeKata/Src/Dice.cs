@@ -1,24 +1,32 @@
-﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace YahtzeeKata
 {
     public class Dice
     {
-        private int _value;
-        private readonly Random _numGenerator;
+        private readonly List<Die> _dice;
 
         public Dice() { }
 
-        public Dice(Random numGenerator)
+        public Dice(int count)
         {
-            _numGenerator = numGenerator;
+            this._dice = Enumerable.Repeat(new Die(), count).ToList();
         }
 
-        public virtual void Roll()
+        public virtual void RollDice()
         {
-            _value = _numGenerator.Next(1, 7);
+            _dice.ToList().ForEach(d => d.Roll());
         }
 
-        public virtual int Value() => _value;
+        public virtual string DieValues()
+        {
+            var diceCount = 0;
+
+            var dieValues = string.Join(
+                " ",
+                _dice.Select(d => $"D{++diceCount}:{d.Value()}"));
+            return dieValues;
+        }
     }
 }

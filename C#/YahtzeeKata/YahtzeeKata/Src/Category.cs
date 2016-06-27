@@ -1,21 +1,21 @@
-using System.Collections.Generic;
-using System.Linq;
-
 namespace YahtzeeKata
 {
     public class Category
     {
         private readonly IConsole _console;
-        private readonly IEnumerable<Dice> _die;
         private readonly string _title;
+        private readonly Dice _dice;
 
-        public Category() { }
+        public Category()
+        {
+            _dice = new Dice();
+        }
 
-        public Category(string title, IConsole console, IEnumerable<Dice> die)
+        public Category(string title, IConsole console, Dice dice)
         {
             this._title = title;
             this._console = console;
-            _die = die;
+            _dice = dice;
         }
 
         public virtual void Play()
@@ -27,18 +27,14 @@ namespace YahtzeeKata
 
         private void PlayTurn()
         {
-            _die.ToList().ForEach(d => d.Roll());
-            
+            _dice.RollDice();
+
             PrintDie();
         }
 
         private void PrintDie()
         {
-            var diceCount = 0;
-
-            var dieValues = string.Join(
-                " ",
-                _die.Select(d => $"D{++diceCount}:{d.Value()}"));
+            var dieValues = _dice.DieValues();
 
             _console.PrintLine($"Dice: {dieValues}");
         }
