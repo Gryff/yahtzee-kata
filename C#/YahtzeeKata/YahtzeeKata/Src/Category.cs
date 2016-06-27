@@ -30,6 +30,6 @@ namespace YahtzeeKata
         }
 
         private void PrintDice() => 
-            _console.PrintLine($"Dice: {_dice.DieValues()}");
+            _console.PrintLine($"Dice: {_dice.DiceValues()}");
     }
 }
