@@ -10,8 +10,8 @@ namespace YahtzeeKata
 
         public Category(string title, IConsole console, Dice dice)
         {
-            this._title = title;
-            this._console = console;
+            _title = title;
+            _console = console;
             _dice = dice;
         }
 

@@ -1,5 +1,3 @@
-using YahtzeeKata.Tests;
-
 namespace YahtzeeKata
 {
     public class YahtzeeGame
@@ -8,7 +6,7 @@ namespace YahtzeeKata
 
         public YahtzeeGame(ScoreCard scoreCard)
         {
-            this._scoreCard = scoreCard;
+            _scoreCard = scoreCard;
         }
 
         public void Run()

@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace YahtzeeKata.Tests
 {
     [TestFixture]
-    class DiceShould
+    public class DiceShould
     {
         [Test]
         public void ProduceDiceValues()

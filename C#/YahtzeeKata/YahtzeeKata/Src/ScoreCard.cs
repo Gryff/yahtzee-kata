@@ -10,7 +10,7 @@ namespace YahtzeeKata
 
         public ScoreCard(List<Category> categories)
         {
-            this._categories = categories;
+            _categories = categories;
         }
 
         public virtual void PlayNextCategory()
