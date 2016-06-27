@@ -5,18 +5,18 @@ namespace YahtzeeKata
     public class Die
     {
         private int _value;
-        private readonly Random _numGenerator;
+        private readonly Random _numberGenerator;
 
         public Die() { }
 
-        public Die(Random numGenerator)
+        public Die(Random numberGenerator)
         {
-            _numGenerator = numGenerator;
+            _numberGenerator = numberGenerator;
         }
 
         public virtual void Roll()
         {
-            _value = _numGenerator.Next(1, 7);
+            _value = _numberGenerator.Next(1, 7);
         }
 
         public virtual int Value() => _value;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,9 +10,10 @@ namespace YahtzeeKata
 
         public Dice() { }
 
-        public Dice(int count)
+        public Dice(int amount, Random numberGenerator)
         {
-            this._dice = Enumerable.Repeat(new Die(), count).ToList();
+            this._dice = Enumerable.Repeat(
+                new Die(numberGenerator), amount).ToList();
         }
 
         public virtual void RollDice()
@@ -26,6 +28,7 @@ namespace YahtzeeKata
             var dieValues = string.Join(
                 " ",
                 _dice.Select(d => $"D{++diceCount}:{d.Value()}"));
+
             return dieValues;
         }
     }

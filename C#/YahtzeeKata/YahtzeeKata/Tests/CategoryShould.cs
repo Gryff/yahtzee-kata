@@ -30,7 +30,7 @@ namespace YahtzeeKata.Tests
         }
 
         [Test]
-        public void RollItsDie()
+        public void RollTheDice()
         {
             _category.Play();
             
@@ -38,7 +38,7 @@ namespace YahtzeeKata.Tests
         }
 
         [Test]
-        public void PrintItsDie()
+        public void PrintTheDice()
         {
             _dice.DieValues().Returns("D1:5 D2:5 D3:5 D4:5 D5:5");
 

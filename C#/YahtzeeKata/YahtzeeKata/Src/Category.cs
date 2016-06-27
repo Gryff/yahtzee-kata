@@ -6,10 +6,7 @@ namespace YahtzeeKata
         private readonly string _title;
         private readonly Dice _dice;
 
-        public Category()
-        {
-            _dice = new Dice();
-        }
+        public Category() { }
 
         public Category(string title, IConsole console, Dice dice)
         {
@@ -29,14 +26,10 @@ namespace YahtzeeKata
         {
             _dice.RollDice();
 
-            PrintDie();
+            PrintDice();
         }
 
-        private void PrintDie()
-        {
-            var dieValues = _dice.DieValues();
-
-            _console.PrintLine($"Dice: {dieValues}");
-        }
+        private void PrintDice() => 
+            _console.PrintLine($"Dice: {_dice.DieValues()}");
     }
 }

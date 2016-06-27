@@ -8,28 +8,28 @@ namespace YahtzeeKata.Tests
     [TestFixture]
     public class YahtzeeFeature
     {
-        private Dice _die;
+        private Dice _dice;
         private IConsole _console;
         private List<Category> _categories;
         private ScoreCard _scoreCard;
         private YahtzeeGame _game;
-        private Random _random;
+        private Random _numberGenerator;
 
         [SetUp]
         public void SetUp()
         {
             _console = Substitute.For<IConsole>();
 
-            _random = Substitute.For<Random>();
-            _random.Next(1, 7).Returns(1, 2, 3, 4, 5, 1, 1, 2, 3, 1, 2);
+            _numberGenerator = Substitute.For<Random>();
+            _numberGenerator.Next(1, 7).Returns(1, 2, 3, 4, 5, 1, 1, 2, 3, 1, 2);
 
-            _die = new Dice(5);
+            _dice = new Dice(5, _numberGenerator);
 
             _categories = new List<Category>
             {
-                new Category("Ones", _console, _die),
-                new Category("Twos", _console, _die),
-                new Category("Threes", _console, _die)
+                new Category("Ones", _console, _dice),
+                new Category("Twos", _console, _dice),
+                new Category("Threes", _console, _dice)
             };
 
             _scoreCard = new ScoreCard(_categories);
