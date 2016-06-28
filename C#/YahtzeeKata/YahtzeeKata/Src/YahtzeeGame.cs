@@ -11,7 +11,7 @@ namespace YahtzeeKata
 
         public void Run()
         {
-            _scoreCard.PlayNextCategory();
+            _scoreCard.PlayCategories();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace YahtzeeKata
             _categories = categories;
         }
 
-        public virtual void PlayNextCategory()
+        public virtual void PlayCategories()
         {
             _categories.ForEach(c => c.Play());
         }

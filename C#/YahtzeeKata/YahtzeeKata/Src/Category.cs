@@ -20,6 +20,8 @@ namespace YahtzeeKata
             _console.PrintLine($"Category: {_title}");
 
             PlayTurn();
+
+
         }
 
         private void PlayTurn()
