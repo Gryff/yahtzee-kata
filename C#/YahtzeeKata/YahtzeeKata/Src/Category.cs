@@ -4,34 +4,22 @@ namespace YahtzeeKata
     {
         private readonly IConsole _console;
         private readonly string _title;
-        private readonly Dice _dice;
+        private readonly Turn _turn;
 
-        public Category() { }
+        public Category(){ }
 
-        public Category(string title, IConsole console, Dice dice)
+        public Category(string title, IConsole console, Turn turn)
         {
             _title = title;
             _console = console;
-            _dice = dice;
+            _turn = turn;
         }
 
         public virtual void Play()
         {
             _console.PrintLine($"Category: {_title}");
-
-            PlayTurn();
-
-
+            
+            _turn.PlayTurn();
         }
-
-        private void PlayTurn()
-        {
-            _dice.RollDice();
-
-            PrintDice();
-        }
-
-        private void PrintDice() => 
-            _console.PrintLine($"Dice: {_dice.DiceValues()}");
     }
 }

@@ -14,6 +14,7 @@ namespace YahtzeeKata.Tests
         private ScoreCard _scoreCard;
         private YahtzeeGame _game;
         private Random _numberGenerator;
+        private Turn _turn;
 
         [SetUp]
         public void SetUp()
@@ -24,12 +25,13 @@ namespace YahtzeeKata.Tests
             _numberGenerator.Next(1, 7).Returns(1, 2, 3, 4, 5, 1, 1, 2, 3, 1, 2);
 
             _dice = new Dice(5, _numberGenerator);
+            _turn = new Turn(_dice, _console);
 
             _categories = new List<Category>
             {
-                new Category("Ones", _console, _dice),
-                new Category("Twos", _console, _dice),
-                new Category("Threes", _console, _dice)
+                new Category("Ones", _console, _turn),
+                new Category("Twos", _console, _turn),
+                new Category("Threes", _console, _turn)
             };
 
             _scoreCard = new ScoreCard(_categories);
