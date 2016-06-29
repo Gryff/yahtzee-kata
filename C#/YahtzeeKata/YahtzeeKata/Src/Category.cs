@@ -18,8 +18,10 @@ namespace YahtzeeKata
         public virtual void Play()
         {
             _console.PrintLine($"Category: {_title}");
-            
-            _turn.PlayTurn();
+
+            _turn.PlayFirstTurn();
+            _turn.PlayAnotherTurn();
+            _turn.PlayAnotherTurn();
         }
     }
 }

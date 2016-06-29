@@ -21,7 +21,7 @@ namespace YahtzeeKata.Tests
         [Test]
         public void RollTheDice()
         {
-            _turn.PlayTurn();
+            _turn.PlayFirstTurn();
 
             _dice.Received().RollDice();
         }
@@ -31,9 +31,24 @@ namespace YahtzeeKata.Tests
         {
             _dice.DiceValues().Returns("D1:5 D2:5 D3:5 D4:5 D5:5");
 
-            _turn.PlayTurn();
+            _turn.PlayFirstTurn();
 
             _console.Received().PrintLine("Dice: D1:5 D2:5 D3:5 D4:5 D5:5");
+        }
+
+        [Test]
+        public void OnSubsequentTurnsRollOnlySpecifiedDice()
+        {
+            _console.ReadLine().Returns("D1 D2 D3");
+
+            _turn.PlayAnotherTurn();
+
+            Received.InOrder(() =>
+            {
+                _console.PrintLine("[1] Die to re-run:");
+                _console.ReadLine();
+                _dice.Received().RollDice(1, 2, 3);
+            });
         }
     }
 }

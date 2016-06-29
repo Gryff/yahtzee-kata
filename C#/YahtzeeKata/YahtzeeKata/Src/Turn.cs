@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace YahtzeeKata
 {
     public class Turn
@@ -13,11 +15,25 @@ namespace YahtzeeKata
             _console = console;
         }
 
-        public virtual void PlayTurn()
+        public virtual void PlayFirstTurn()
         {
             _dice.RollDice();
 
             PrintDice();
+        }
+
+        public virtual void PlayAnotherTurn()
+        {
+            _console.PrintLine("[1] Die to re-run:");
+            var userInput = _console.ReadLine();
+
+            var diceToReRun = userInput
+                .Replace("D", "")
+                .Split()
+                .Select(int.Parse)
+                .ToArray();
+
+            _dice.RollDice(diceToReRun);
         }
 
         private void PrintDice() => 

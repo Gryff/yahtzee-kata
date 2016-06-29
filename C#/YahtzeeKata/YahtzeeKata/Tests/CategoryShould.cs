@@ -27,5 +27,15 @@ namespace YahtzeeKata.Tests
 
             _console.Received().PrintLine($"Category: {_title}");
         }
+
+        [Test]
+        public void PlayTurns()
+        {
+            _category.Play();
+
+            _turn.Received().PlayFirstTurn();
+
+            _turn.Received(2).PlayAnotherTurn();
+        }
     }
 }
