@@ -18,9 +18,19 @@ namespace YahtzeeKata
 
         public virtual void RollDice(params int[] diceToRoll)
         {
-            for (var i = 0; i < _dice.Length; i++)
+            if (diceToRoll.Length > 0)
             {
-                _dice[i] = _numberGenerator.Next(1, 7);
+                foreach (var die in diceToRoll)
+                {
+                    _dice[die - 1] = _numberGenerator.Next(1, 7);
+                }
+            }
+            else
+            {
+                for (var i = 0; i < _dice.Length; i++)
+                {
+                    _dice[i] = _numberGenerator.Next(1, 7);
+                }
             }
         }
 
