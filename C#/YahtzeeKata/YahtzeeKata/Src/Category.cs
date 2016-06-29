@@ -18,7 +18,7 @@ namespace YahtzeeKata
         public virtual void Play()
         {
             _console.PrintLine($"Category: {_title}");
-
+            
             _turn.PlayTurn();
         }
     }

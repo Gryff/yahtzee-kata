@@ -14,7 +14,7 @@ namespace YahtzeeKata.Tests
 
             game.Run();
 
-            scoreCard.Received().PlayNextCategory();
+            scoreCard.Received().PlayCategories();
         }
     }
 }

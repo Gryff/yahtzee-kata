@@ -16,7 +16,7 @@ namespace YahtzeeKata
             _dice = new int[amount];
         }
 
-        public virtual void RollDice()
+        public virtual void RollDice(params int[] diceToRoll)
         {
             for (var i = 0; i < _dice.Length; i++)
             {
