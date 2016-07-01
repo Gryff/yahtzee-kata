@@ -20,17 +20,27 @@ namespace YahtzeeKata
         {
             if (diceToRoll.Length > 0)
             {
-                foreach (var die in diceToRoll)
-                {
-                    _dice[die - 1] = _numberGenerator.Next(1, 7);
-                }
+                RollSomeDice(diceToRoll);
             }
             else
             {
-                for (var i = 0; i < _dice.Length; i++)
-                {
-                    _dice[i] = _numberGenerator.Next(1, 7);
-                }
+                RollAllDice();
+            }
+        }
+
+        private void RollAllDice()
+        {
+            for (var i = 0; i < _dice.Length; i++)
+            {
+                _dice[i] = _numberGenerator.Next(1, 7);
+            }
+        }
+
+        private void RollSomeDice(int[] diceToRoll)
+        {
+            foreach (var die in diceToRoll)
+            {
+                _dice[die - 1] = _numberGenerator.Next(1, 7);
             }
         }
 
