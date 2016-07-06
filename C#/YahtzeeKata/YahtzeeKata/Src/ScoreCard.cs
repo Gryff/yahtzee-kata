@@ -6,8 +6,6 @@ namespace YahtzeeKata
     {
         private readonly List<Category> _categories;
 
-        public ScoreCard() { }
-
         public ScoreCard(List<Category> categories)
         {
             _categories = categories;

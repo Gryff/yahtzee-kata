@@ -8,8 +8,6 @@ namespace YahtzeeKata
         private readonly int[] _dice;
         private readonly Random _numberGenerator;
 
-        public Dice() { }
-
         public Dice(int amount, Random numberGenerator)
         {
             _numberGenerator = numberGenerator;

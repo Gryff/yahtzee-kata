@@ -7,8 +7,6 @@ namespace YahtzeeKata
         private readonly Dice _dice;
         private readonly IConsole _console;
 
-        public Turn() { }
-
         public Turn(Dice dice, IConsole console)
         {
             _dice = dice;

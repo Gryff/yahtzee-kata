@@ -2,7 +2,7 @@ namespace YahtzeeKata
 {
     public class YahtzeeGame
     {
-        private ScoreCard _scoreCard;
+        private readonly ScoreCard _scoreCard;
 
         public YahtzeeGame(ScoreCard scoreCard)
         {

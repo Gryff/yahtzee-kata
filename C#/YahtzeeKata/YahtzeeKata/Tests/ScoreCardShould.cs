@@ -10,7 +10,7 @@ namespace YahtzeeKata.Tests
         [Test]
         public void PlayTheNextCategory()
         {
-            var category = Substitute.For<Category>();
+            var category = Substitute.For<Category>("", null, null);
 
             var scoreCard = new ScoreCard(new List<Category> {category});
 

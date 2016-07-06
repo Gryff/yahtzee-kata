@@ -13,7 +13,7 @@ namespace YahtzeeKata.Tests
         [SetUp]
         public void SetUp()
         {
-            _dice = Substitute.For<Dice>();
+            _dice = Substitute.For<Dice>(0, null);
             _console = Substitute.For<IConsole>();
             _turn = new Turn(_dice, _console);
         }

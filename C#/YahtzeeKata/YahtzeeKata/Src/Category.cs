@@ -6,8 +6,6 @@ namespace YahtzeeKata
         private readonly string _title;
         private readonly Turn _turn;
 
-        public Category(){ }
-
         public Category(string title, IConsole console, Turn turn)
         {
             _title = title;

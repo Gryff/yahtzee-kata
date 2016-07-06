@@ -16,7 +16,7 @@ namespace YahtzeeKata.Tests
         {
             _console = Substitute.For<IConsole>();
             _title = "Ones";
-            _turn = Substitute.For<Turn>();
+            _turn = Substitute.For<Turn>(null, _console);
             _category = new Category(_title, _console, _turn);
         }
 
