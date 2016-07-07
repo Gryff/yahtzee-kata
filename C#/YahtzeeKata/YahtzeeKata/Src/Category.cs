@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace YahtzeeKata
 {
     public class Category
@@ -20,6 +22,15 @@ namespace YahtzeeKata
             _turn.PlayFirstTurn();
             _turn.PlayAnotherTurn();
             _turn.PlayAnotherTurn();
+
+            _console.PrintLine($"Category {_title} score: {Score()}");
+        }
+
+        private int Score()
+        {
+            var dice = _turn.GetDice();
+
+            return dice.Count(d => d == 1);
         }
     }
 }

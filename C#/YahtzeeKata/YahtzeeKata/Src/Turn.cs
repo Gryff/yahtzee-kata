@@ -39,5 +39,10 @@ namespace YahtzeeKata
 
         private void PrintDice() => 
             _console.PrintLine($"Dice: {_dice.DiceValues()}");
+
+        public virtual int[] GetDice()
+        {
+            return _dice.GetDice();
+        }
     }
 }

@@ -52,5 +52,7 @@ namespace YahtzeeKata
 
             return dieValues;
         }
+
+        public int[] GetDice() => _dice;
     }
 }

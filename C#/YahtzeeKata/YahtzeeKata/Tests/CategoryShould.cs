@@ -37,5 +37,15 @@ namespace YahtzeeKata.Tests
 
             _turn.Received(2).PlayAnotherTurn();
         }
+
+        [Test]
+        public void PrintTheFinalScore()
+        {
+            _turn.GetDice().Returns(new [] {1, 1, 1, 2, 3});
+
+            _category.Play();
+
+            _console.Received().PrintLine($"Category {_title} score: 3");
+        }
     }
 }
