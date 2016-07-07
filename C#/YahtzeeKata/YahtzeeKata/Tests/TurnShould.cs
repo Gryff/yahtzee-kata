@@ -45,9 +45,24 @@ namespace YahtzeeKata.Tests
 
             Received.InOrder(() =>
             {
-                _console.PrintLine("[1] Die to re-run:");
+                _console.PrintLine("[1] Dice to re-run:");
                 _console.ReadLine();
                 _dice.Received().RollDice(1, 2, 3);
+            });
+        }
+
+        [Test]
+        public void ShowTheRetryNumberOfTheTurn()
+        {
+            _console.ReadLine().Returns("D1");
+
+            _turn.PlayAnotherTurn();
+            _turn.PlayAnotherTurn();
+
+            Received.InOrder(() =>
+            {
+                _console.PrintLine("[1] Dice to re-run:");
+                _console.PrintLine("[2] Dice to re-run:");
             });
         }
     }

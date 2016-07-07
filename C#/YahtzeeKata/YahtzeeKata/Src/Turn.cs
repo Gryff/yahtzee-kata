@@ -6,6 +6,7 @@ namespace YahtzeeKata
     {
         private readonly Dice _dice;
         private readonly IConsole _console;
+        private int _retryCount;
 
         public Turn(Dice dice, IConsole console)
         {
@@ -22,7 +23,7 @@ namespace YahtzeeKata
 
         public virtual void PlayAnotherTurn()
         {
-            _console.PrintLine("[1] Die to re-run:");
+            _console.PrintLine($"[{++_retryCount}] Dice to re-run:");
             var userInput = _console.ReadLine();
 
             var diceToReRun = userInput
@@ -32,6 +33,8 @@ namespace YahtzeeKata
                 .ToArray();
 
             _dice.RollDice(diceToReRun);
+
+            PrintDice();
         }
 
         private void PrintDice() => 
