@@ -1,4 +1,4 @@
-using System.Linq;
+using System;
 
 namespace YahtzeeKata
 {
@@ -6,10 +6,12 @@ namespace YahtzeeKata
     {
         private readonly IConsole _console;
         private readonly string _title;
+        private readonly Func<int[], int> _score;
         private readonly Turn _turn;
 
-        public Category(string title, IConsole console, Turn turn)
+        public Category(string title, Func<int[], int> score, IConsole console, Turn turn)
         {
+            _score = score;
             _title = title;
             _console = console;
             _turn = turn;
@@ -26,11 +28,6 @@ namespace YahtzeeKata
             _console.PrintLine($"Category {_title} score: {Score()}");
         }
 
-        private int Score()
-        {
-            var dice = _turn.GetDice();
-
-            return dice.Count(d => d == 1);
-        }
+        private int Score() => _score(_turn.GetDice());
     }
 }

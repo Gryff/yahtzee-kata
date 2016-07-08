@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -8,21 +9,16 @@ namespace YahtzeeKata.Tests
     [TestFixture]
     public class YahtzeeFeature
     {
-        private Dice _dice;
         private IConsole _console;
-        private List<Category> _categories;
-        private ScoreCard _scoreCard;
         private YahtzeeGame _game;
-        private Random _numberGenerator;
-        private Turn _turn;
 
         [SetUp]
         public void SetUp()
         {
             _console = Substitute.For<IConsole>();
 
-            _numberGenerator = Substitute.For<Random>();
-            _numberGenerator.Next(1, 7).Returns(
+            var numberGenerator = Substitute.For<Random>();
+            numberGenerator.Next(1, 7).Returns(
                 // first category
                 1, 2, 3, 4, 5, 
                 1, 1, 2, 3, 
@@ -30,7 +26,11 @@ namespace YahtzeeKata.Tests
                 // second category
                 2, 2, 1, 3, 2,
                 4, 4,
-                2, 1);
+                2, 1,
+                // third category
+                1, 2, 3, 4, 5,
+                3, 1, 2, 4,
+                5, 1, 2);
 
             _console.ReadLine().Returns(
                 // first category
@@ -38,20 +38,23 @@ namespace YahtzeeKata.Tests
                 "D4 D5",
                 // second category
                 "D3 D4",
-                "D3 D4");
+                "D3 D4",
+                // third category
+                "D1 D2 D4 D5",
+                "D2 D4 D5");
 
-            _dice = new Dice(5, _numberGenerator);
-            _turn = new Turn(_dice, _console);
+            var dice = new Dice(5, numberGenerator);
 
-            _categories = new List<Category>
+            var categories = new List<Category>
             {
-                new Category("Ones", _console, _turn),
-                new Category("Twos", _console, _turn),
-                new Category("Threes", _console, _turn)
+                new Category("Ones", DiceMustAllBe(1), _console, new Turn(dice, _console)),
+                new Category("Twos", DiceMustAllBe(2), _console, new Turn(dice, _console)),
+                new Category("Threes", DiceMustAllBe(3), _console, new Turn(dice, _console))
             };
 
-            _scoreCard = new ScoreCard(_categories);
-            _game = new YahtzeeGame(_scoreCard);
+            var scoreCard = new ScoreCard(categories);
+
+            _game = new YahtzeeGame(scoreCard);
         }
 
         [Test]
@@ -78,7 +81,16 @@ namespace YahtzeeKata.Tests
                 _console.PrintLine("Category Twos score: 4");
 
                 _console.PrintLine("Category: Threes");
+                _console.PrintLine("Dice: D1:1 D2:2 D3:3 D4:4 D5:5");
+                _console.PrintLine("[1] Dice to re-run:");
+                _console.PrintLine("Dice: D1:3 D2:1 D3:3 D4:2 D5:4");
+                _console.PrintLine("[2] Dice to re-run:");
+                _console.PrintLine("Dice: D1:3 D2:5 D3:3 D4:1 D5:2");
+                _console.PrintLine("Category Threes score: 2");
             });
         }
+
+        private Func<int[], int> DiceMustAllBe(int n) =>
+            dice => dice.Count(d => d == n); 
     }
 }
