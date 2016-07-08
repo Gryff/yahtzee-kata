@@ -47,9 +47,9 @@ namespace YahtzeeKata.Tests
 
             var categories = new List<Category>
             {
-                new Category("Ones", DiceMustAllBe(1), _console, new Turn(dice, _console)),
-                new Category("Twos", DiceMustAllBe(2), _console, new Turn(dice, _console)),
-                new Category("Threes", DiceMustAllBe(3), _console, new Turn(dice, _console))
+                new Category(new Rule("Ones", DiceMustAllBe(1)), _console, new Turn(dice, _console)),
+                new Category(new Rule("Twos", DiceMustAllBe(2)), _console, new Turn(dice, _console)),
+                new Category(new Rule("Threes", DiceMustAllBe(3)), _console, new Turn(dice, _console))
             };
 
             var scoreCard = new ScoreCard(categories);

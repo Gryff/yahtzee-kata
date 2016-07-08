@@ -13,6 +13,7 @@ namespace YahtzeeKata.Tests
         private string _title1;
         private Func<int[], int> _scoreDecider;
         private Turn _turn;
+        private Rule _rule;
 
         [SetUp]
         public void SetUp()
@@ -21,12 +22,14 @@ namespace YahtzeeKata.Tests
             _title1 = "Ones";
             _scoreDecider = dice => dice.Count(d => d == 1);
             _turn = Substitute.For<Turn>(null, _console);
-            _category = new Category(_title1, _scoreDecider, _console, _turn);
+            _rule = Substitute.For<Rule>("", null);
+            _category = new Category(_rule, _console, _turn);
         }
 
         [Test]
         public void PrintItsTitle()
         {
+            _rule.Name.Returns(_title1);
             _category.Play();
 
             _console.Received().PrintLine($"Category: {_title1}");
@@ -45,7 +48,12 @@ namespace YahtzeeKata.Tests
         [Test]
         public void PrintTheFinalScore()
         {
-            _turn.GetDice().Returns(new [] {1, 1, 1, 2, 3});
+            var dice = new [] {1, 1, 1, 2, 3};
+
+            _turn.GetDice().Returns(dice);
+
+            _rule.Name.Returns(_title1);
+            _rule.Score(dice).Returns(3);
 
             _category.Play();
 

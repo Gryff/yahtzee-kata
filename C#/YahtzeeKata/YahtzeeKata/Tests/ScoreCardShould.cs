@@ -5,12 +5,12 @@ using NUnit.Framework;
 namespace YahtzeeKata.Tests
 {
     [TestFixture]
-    class ScoreCardShould
+    public class ScoreCardShould
     {
         [Test]
         public void PlayTheNextCategory()
         {
-            var category = Substitute.For<Category>("", null, null, null);
+            var category = Substitute.For<Category>(null, null, null);
 
             var scoreCard = new ScoreCard(new List<Category> {category});
 

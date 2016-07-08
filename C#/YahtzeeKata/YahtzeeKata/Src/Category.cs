@@ -4,30 +4,32 @@ namespace YahtzeeKata
 {
     public class Category
     {
+        private readonly Rule _rule;
         private readonly IConsole _console;
-        private readonly string _title;
-        private readonly Func<int[], int> _score;
         private readonly Turn _turn;
 
-        public Category(string title, Func<int[], int> score, IConsole console, Turn turn)
+        public Category(Rule rule, IConsole console, Turn turn)
         {
-            _score = score;
-            _title = title;
+            _rule = rule;
             _console = console;
             _turn = turn;
         }
 
         public virtual void Play()
         {
-            _console.PrintLine($"Category: {_title}");
+            PrintTitle();
 
             _turn.PlayFirstTurn();
             _turn.PlayAnotherTurn();
             _turn.PlayAnotherTurn();
 
-            _console.PrintLine($"Category {_title} score: {Score()}");
+            PrintScore();
         }
 
-        private int Score() => _score(_turn.GetDice());
+        private void PrintTitle() => 
+            _console.PrintLine($"Category: {_rule.Name}");
+
+        private void PrintScore() => 
+            _console.PrintLine($"Category {_rule.Name} score: {_rule.Score(_turn.GetDice())}");
     }
 }
