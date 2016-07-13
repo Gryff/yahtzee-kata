@@ -10,7 +10,7 @@ namespace YahtzeeKata.Tests
         [Test]
         public void RunTheGame()
         {
-            var scoreCard = Substitute.For<ScoreCard>(new List<Category>());
+            var scoreCard = Substitute.For<ScoreCard>(new List<Category>(), null);
             var game = new YahtzeeGame(scoreCard);
 
             game.Run();

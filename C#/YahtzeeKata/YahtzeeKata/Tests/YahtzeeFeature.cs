@@ -43,16 +43,14 @@ namespace YahtzeeKata.Tests
                 "D1 D2 D4 D5",
                 "D2 D4 D5");
 
-            var dice = new Dice(5, numberGenerator);
-
             var categories = new List<Category>
             {
-                new Category(new Rule("Ones", DiceMustAllBe(1)), _console, new Turn(dice, _console)),
-                new Category(new Rule("Twos", DiceMustAllBe(2)), _console, new Turn(dice, _console)),
-                new Category(new Rule("Threes", DiceMustAllBe(3)), _console, new Turn(dice, _console))
+                new Category(new Rule("Ones", DiceMustAllBe(1)), _console, new Turn(new Dice(5, numberGenerator), _console)),
+                new Category(new Rule("Twos", DiceMustAllBe(2)), _console, new Turn(new Dice(5, numberGenerator), _console)),
+                new Category(new Rule("Threes", DiceMustAllBe(3)), _console, new Turn(new Dice(5, numberGenerator), _console))
             };
 
-            var scoreCard = new ScoreCard(categories);
+            var scoreCard = new ScoreCard(categories, _console);
 
             _game = new YahtzeeGame(scoreCard);
         }
@@ -87,6 +85,12 @@ namespace YahtzeeKata.Tests
                 _console.PrintLine("[2] Dice to re-run:");
                 _console.PrintLine("Dice: D1:3 D2:5 D3:3 D4:1 D5:2");
                 _console.PrintLine("Category Threes score: 2");
+
+                _console.PrintLine("Yahtzee score");
+                _console.PrintLine("Ones: 4");
+                _console.PrintLine("Twos: 4");
+                _console.PrintLine("Threes: 2");
+                _console.PrintLine("Final score: 10");
             });
         }
 

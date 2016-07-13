@@ -1,5 +1,3 @@
-using System;
-
 namespace YahtzeeKata
 {
     public class Category
@@ -24,6 +22,16 @@ namespace YahtzeeKata
             _turn.PlayAnotherTurn();
 
             PrintScore();
+        }
+
+        public virtual string FormatScore()
+        {
+            return $"{_rule.Name}: {_rule.Score(_turn.GetDice())}";
+        }
+
+        public virtual int GetScore()
+        {
+            return _rule.Score(_turn.GetDice());
         }
 
         private void PrintTitle() => 

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using NSubstitute;
+﻿using NSubstitute;
 using NUnit.Framework;
 
 namespace YahtzeeKata.Tests
@@ -11,7 +9,6 @@ namespace YahtzeeKata.Tests
         private IConsole _console;
         private Category _category;
         private string _title1;
-        private Func<int[], int> _scoreDecider;
         private Turn _turn;
         private Rule _rule;
 
@@ -20,7 +17,6 @@ namespace YahtzeeKata.Tests
         {
             _console = Substitute.For<IConsole>();
             _title1 = "Ones";
-            _scoreDecider = dice => dice.Count(d => d == 1);
             _turn = Substitute.For<Turn>(null, _console);
             _rule = Substitute.For<Rule>("", null);
             _category = new Category(_rule, _console, _turn);

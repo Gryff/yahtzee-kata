@@ -12,6 +12,7 @@ namespace YahtzeeKata
         public void Run()
         {
             _scoreCard.PlayCategories();
+            _scoreCard.PrintScore();
         }
     }
 }
