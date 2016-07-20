@@ -6,54 +6,38 @@ namespace YahtzeeKata.Tests
     [TestFixture]
     public class CategoryShould
     {
-        private IConsole _console;
-        private Category _category;
-        private string _title1;
         private Turn _turn;
-        private Rule _rule;
+        private Category _category;
+        private Dice _dice;
+        private IRule _onesRule;
 
         [SetUp]
         public void SetUp()
         {
-            _console = Substitute.For<IConsole>();
-            _title1 = "Ones";
-            _turn = Substitute.For<Turn>(null, _console);
-            _rule = Substitute.For<Rule>("", null);
-            _category = new Category(_rule, _console, _turn);
+            _turn = Substitute.For<Turn>();
+            _dice = Substitute.For<Dice>();
+            _onesRule = Substitute.For<IRule>();
+            _category = new Category("Ones", _onesRule, _turn, _dice);
         }
 
         [Test]
-        public void PrintItsTitle()
+        public void Play_three_turns()
         {
-            _rule.Name.Returns(_title1);
             _category.Play();
 
-            _console.Received().PrintLine($"Category: {_title1}");
+            _turn.Received(3).Play();
         }
 
         [Test]
-        public void PlayTurns()
+        public void Calculate_score()
         {
-            _category.Play();
-
-            _turn.Received().PlayFirstTurn();
-
-            _turn.Received(2).PlayAnotherTurn();
-        }
-
-        [Test]
-        public void PrintTheFinalScore()
-        {
-            var dice = new [] {1, 1, 1, 2, 3};
-
-            _turn.GetDice().Returns(dice);
-
-            _rule.Name.Returns(_title1);
-            _rule.Score(dice).Returns(3);
+            var dice = new[] {1, 2, 3, 4, 5};
+            _dice.GetDice().Returns(dice);
+            _onesRule.ScoreFor(dice).Returns(1);
 
             _category.Play();
 
-            _console.Received().PrintLine($"Category {_title1} score: 3");
+            Assert.That(_category.Score(), Is.EqualTo(1));
         }
     }
 }

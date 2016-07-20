@@ -1,8 +1,8 @@
 ﻿namespace YahtzeeKata
 {
-    public class Turn
+    public class OnesRule : IRule
     {
-        public virtual void Play()
+        public int ScoreFor(int[] dice)
         {
             throw new System.NotImplementedException();
         }

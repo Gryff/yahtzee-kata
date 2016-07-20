@@ -1,18 +1,35 @@
+using System.Collections.Generic;
+using System.Linq;
+
 namespace YahtzeeKata
 {
     public class YahtzeeGame
     {
-        private readonly ScoreCard _scoreCard;
+        private readonly List<Category> _categories;
+        private readonly IConsole _console;
 
-        public YahtzeeGame(ScoreCard scoreCard)
+        public YahtzeeGame(List<Category> categories, IConsole console)
         {
-            _scoreCard = scoreCard;
+            _categories = categories;
+            _console = console;
         }
 
-        public void Run()
+        public void Play()
         {
-            _scoreCard.PlayCategories();
-            _scoreCard.PrintScore();
+            _categories.ForEach(c => c.Play());
+
+            PrintFinalScore();
+        }
+
+        private void PrintFinalScore()
+        {
+            _console.PrintLine("Yahtzee score");
+
+            _categories.ForEach(
+                c => _console.PrintLine($"{c.Title}: {c.Score()}"));
+
+            _console.PrintLine(
+                $"Final score: {_categories.Sum(c => c.Score())}");
         }
     }
 }

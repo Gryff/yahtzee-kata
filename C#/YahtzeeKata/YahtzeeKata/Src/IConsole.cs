@@ -1,4 +1,4 @@
-namespace YahtzeeKata
+﻿namespace YahtzeeKata
 {
     public interface IConsole
     {
